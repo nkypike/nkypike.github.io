@@ -1,213 +1,178 @@
 /*
-	Astral 2.5 by HTML5 UP
+	Overflow 1.1 by HTML5 UP
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-skel.init({
-	prefix: 'css/style',
-	pollOnce: true,
-	resetCSS: true,
-	useOrientation: false,
-	breakpoints: {
-		'mobile': {
-			range: '-480',
-			lockViewport: true,
-			containers: 'fluid',
-			grid: {
-				collapse: true,
-				gutters: 10
+/*********************************************************************************/
+/* Settings                                                                      */
+/*********************************************************************************/
+
+	var _settings = {
+
+		// Full screen header
+			useFullScreenHeader: true,
+
+		// Parallax Background
+			useParallax: true,
+			parallaxFactor: 10,	// Lower = more intense. Higher = less intense.
+			parallaxLimit: 1680,	// Performance tweak: turns off parallax if the viewport width exceeds this value
+
+		// skelJS
+			skelJS: {
+				prefix: 'css/style',
+				resetCSS: true,
+				boxModel: 'border',
+				useOrientation: true,
+				containers: 1140,
+				grid: {
+					gutters: 40
+				},
+				breakpoints: {
+					'widest': { range: '*', containers: 1140, hasStyleSheet: false },
+					'wide': { range: '-1680', containers: 960 },
+					'normal': { range: '-1080', containers: '95%' },
+					'narrow': { range: '-840', containers: '95%', grid: { gutters: 30 } },
+					'mobile': { range: '-640', lockViewport: true, containers: '95%', grid: { collapse: true, gutters: 20 } }
+				}
+			},
+
+		// poptrox
+			poptrox: {
+				useBodyOverflow: false,
+				usePopupEasyClose: false,
+				overlayColor: '#0a1919',
+				overlayOpacity: 0.75,
+				usePopupDefaultStyling: false,
+				usePopupCaption: true,
+				popupLoaderText: '',
+				windowMargin: 10,
+				usePopupNav: true
 			}
-		},
-		'desktop': {
-			range: '481-',
-			containers: 1200
-		}
-	}
-});
 
-jQuery(window).load(function() {
+	};
 
-	jQuery.fn.n33_formerize=function(){var _fakes=new Array(),_form = jQuery(this);_form.find('input[type=text],textarea').each(function() { var e = jQuery(this); if (e.val() == '' || e.val() == e.attr('placeholder')) { e.addClass('formerize-placeholder'); e.val(e.attr('placeholder')); } }).blur(function() { var e = jQuery(this); if (e.attr('name').match(/_fakeformerizefield$/)) return; if (e.val() == '') { e.addClass('formerize-placeholder'); e.val(e.attr('placeholder')); } }).focus(function() { var e = jQuery(this); if (e.attr('name').match(/_fakeformerizefield$/)) return; if (e.val() == e.attr('placeholder')) { e.removeClass('formerize-placeholder'); e.val(''); } }); _form.find('input[type=password]').each(function() { var e = jQuery(this); var x = jQuery(jQuery('<div>').append(e.clone()).remove().html().replace(/type="password"/i, 'type="text"').replace(/type=password/i, 'type=text')); if (e.attr('id') != '') x.attr('id', e.attr('id') + '_fakeformerizefield'); if (e.attr('name') != '') x.attr('name', e.attr('name') + '_fakeformerizefield'); x.addClass('formerize-placeholder').val(x.attr('placeholder')).insertAfter(e); if (e.val() == '') e.hide(); else x.hide(); e.blur(function(event) { event.preventDefault(); var e = jQuery(this); var x = e.parent().find('input[name=' + e.attr('name') + '_fakeformerizefield]'); if (e.val() == '') { e.hide(); x.show(); } }); x.focus(function(event) { event.preventDefault(); var x = jQuery(this); var e = x.parent().find('input[name=' + x.attr('name').replace('_fakeformerizefield', '') + ']'); x.hide(); e.show().focus(); }); x.keypress(function(event) { event.preventDefault(); x.val(''); }); });  _form.submit(function() { jQuery(this).find('input[type=text],input[type=password],textarea').each(function(event) { var e = jQuery(this); if (e.attr('name').match(/_fakeformerizefield$/)) e.attr('name', ''); if (e.val() == e.attr('placeholder')) { e.removeClass('formerize-placeholder'); e.val(''); } }); }).bind("reset", function(event) { event.preventDefault(); jQuery(this).find('select').val(jQuery('option:first').val()); jQuery(this).find('input,textarea').each(function() { var e = jQuery(this); var x; e.removeClass('formerize-placeholder'); switch (this.type) { case 'submit': case 'reset': break; case 'password': e.val(e.attr('defaultValue')); x = e.parent().find('input[name=' + e.attr('name') + '_fakeformerizefield]'); if (e.val() == '') { e.hide(); x.show(); } else { e.show(); x.hide(); } break; case 'checkbox': case 'radio': e.attr('checked', e.attr('defaultValue')); break; case 'text': case 'textarea': e.val(e.attr('defaultValue')); if (e.val() == '') { e.addClass('formerize-placeholder'); e.val(e.attr('placeholder')); } break; default: e.val(e.attr('defaultValue')); break; } }); window.setTimeout(function() { for (x in _fakes) _fakes[x].trigger('formerize_sync'); }, 10); }); return _form; };
+/*********************************************************************************/
+/* jQuery Plugins                                                                */
+/*********************************************************************************/
 
-	/*********************************************************************************/
-	/* Settings                                                                      */
-	/*********************************************************************************/
+	// formerize
+		jQuery.fn.n33_formerize=function(){var _fakes=new Array(),_form = jQuery(this);_form.find('input[type=text],textarea').each(function() { var e = jQuery(this); if (e.val() == '' || e.val() == e.attr('placeholder')) { e.addClass('formerize-placeholder'); e.val(e.attr('placeholder')); } }).blur(function() { var e = jQuery(this); if (e.attr('name').match(/_fakeformerizefield$/)) return; if (e.val() == '') { e.addClass('formerize-placeholder'); e.val(e.attr('placeholder')); } }).focus(function() { var e = jQuery(this); if (e.attr('name').match(/_fakeformerizefield$/)) return; if (e.val() == e.attr('placeholder')) { e.removeClass('formerize-placeholder'); e.val(''); } }); _form.find('input[type=password]').each(function() { var e = jQuery(this); var x = jQuery(jQuery('<div>').append(e.clone()).remove().html().replace(/type="password"/i, 'type="text"').replace(/type=password/i, 'type=text')); if (e.attr('id') != '') x.attr('id', e.attr('id') + '_fakeformerizefield'); if (e.attr('name') != '') x.attr('name', e.attr('name') + '_fakeformerizefield'); x.addClass('formerize-placeholder').val(x.attr('placeholder')).insertAfter(e); if (e.val() == '') e.hide(); else x.hide(); e.blur(function(event) { event.preventDefault(); var e = jQuery(this); var x = e.parent().find('input[name=' + e.attr('name') + '_fakeformerizefield]'); if (e.val() == '') { e.hide(); x.show(); } }); x.focus(function(event) { event.preventDefault(); var x = jQuery(this); var e = x.parent().find('input[name=' + x.attr('name').replace('_fakeformerizefield', '') + ']'); x.hide(); e.show().focus(); }); x.keypress(function(event) { event.preventDefault(); x.val(''); }); });  _form.submit(function() { jQuery(this).find('input[type=text],input[type=password],textarea').each(function(event) { var e = jQuery(this); if (e.attr('name').match(/_fakeformerizefield$/)) e.attr('name', ''); if (e.val() == e.attr('placeholder')) { e.removeClass('formerize-placeholder'); e.val(''); } }); }).bind("reset", function(event) { event.preventDefault(); jQuery(this).find('select').val(jQuery('option:first').val()); jQuery(this).find('input,textarea').each(function() { var e = jQuery(this); var x; e.removeClass('formerize-placeholder'); switch (this.type) { case 'submit': case 'reset': break; case 'password': e.val(e.attr('defaultValue')); x = e.parent().find('input[name=' + e.attr('name') + '_fakeformerizefield]'); if (e.val() == '') { e.hide(); x.show(); } else { e.show(); x.hide(); } break; case 'checkbox': case 'radio': e.attr('checked', e.attr('defaultValue')); break; case 'text': case 'textarea': e.val(e.attr('defaultValue')); if (e.val() == '') { e.addClass('formerize-placeholder'); e.val(e.attr('placeholder')); } break; default: e.val(e.attr('defaultValue')); break; } }); window.setTimeout(function() { for (x in _fakes) _fakes[x].trigger('formerize_sync'); }, 10); }); return _form; };
 
-		var settings = {
-			resizeSpeed:	600,		// Speed to resize panel
-			fadeSpeed:		300,		// Speed to fade in/out
-			sizeFactor:		11.5,		// Size factor
-			sizeMin:		15,			// Minimum point size
-			sizeMax:		20			// Maximum point size
+	// scrolly
+		jQuery.fn.n33_scrolly = function(offset) {				
+			
+			jQuery(this).click(function(e) {
+				var t = jQuery(this), h = t.attr('href'), target;
+
+				if (h.charAt(0) == '#' && h.length > 1 && (target = jQuery(h)).length > 0)
+				{
+					var x, pos;
+					
+					x = target.offset().top;
+					
+					if (t.hasClass('scrolly-centered'))
+						pos = x - (($(window).height() - target.outerHeight()) / 2);
+					else
+					{
+						pos = Math.max(x, 0);
+						
+						if (offset)
+						{
+							if (typeof(offset) == 'function')
+								pos -= (offset)();
+							else
+								pos -= offset;
+						}
+					}
+					
+					e.preventDefault();
+					
+					jQuery('body,html').animate({ scrollTop: pos }, 1000, 'swing');
+				}
+			});
 		};
 
-	/*********************************************************************************/
-	/* Vars                                                                          */
-	/*********************************************************************************/
+/*********************************************************************************/
+/* Initialize                                                                    */
+/*********************************************************************************/
 
-		var	_window = jQuery(window),
-			_main = jQuery('#main'),
-			_panels = _main.find('.panel'),
-			_body = jQuery('body'),
-			_hbw = jQuery('html,body,window'),
-			_footer = jQuery('#footer'),
-			_wrapper = jQuery('#wrapper'),
-			_nav = jQuery('#nav'), _nav_links = _nav.find('a'),
-			_jumplinks = jQuery('.jumplink');
-			
-		var	panels = [],
-			activePanelId = null,
-			firstPanelId = null,
-			isLocked = false,
-			hash = window.location.hash.substring(1),
-			isTouch = !!('ontouchstart' in window),
-			isLegacyIE = (navigator.userAgent.match(/MSIE ([0-9]+)\./) && RegExp.$1 <= 9);
-		
-		if (isTouch)
-		{
-			settings.fadeSpeed = 0;
-			settings.resizeSpeed = 0;
-			_nav_links.find('span').remove();
-		}
-		
-	/*********************************************************************************/
-	/* Main (Desktop)                                                                */
-	/*********************************************************************************/
+	// skelJS
+		skel.init(_settings.skelJS);
 
-		if (isLegacyIE || skel.isActive('desktop'))
-		{
-			// Body
-				_body.h5u_resize = function() {
-					var factor = (_window.width() * _window.height()) / (1440 * 900);
-					_body.css('font-size', Math.min(Math.max(Math.floor(factor * settings.sizeFactor), settings.sizeMin), settings.sizeMax) + 'pt');
-					_main.height(panels[activePanelId].outerHeight());
-					_body.h5u_reposition();
-				};
+	// jQuery
+		jQuery(function() {
 
-				_body.h5u_reposition = function() {
-					if (isTouch && (window.orientation == 0 || window.orientation == 180))
-						_wrapper.css('padding-top', Math.max(((_window.height() - (panels[activePanelId].outerHeight() + _footer.outerHeight())) / 2) - _nav.height(), 30) + 'px');
-					else
-						_wrapper.css('padding-top', (((_window.height() - panels[firstPanelId].height()) / 2) - _nav.height()) + 'px');
-				};
-				
-			// Panels
-				_panels.each(function(i) {
-					var t = jQuery(this), id = t.attr('id');
-					
-					panels[id] = t;
-				
-					if (i == 0)
-					{
-						firstPanelId = id;
-						activePanelId = id;
-					}
-					else
-						t.hide();
-						
-					t.h5u_activate = function(instant) {
-					
-						// Check lock state and determine whether we're already at the target
-							if (isLocked
-							||	activePanelId == id)
-								return false;
+			var	$window = $(window),
+				$body = $('body');
 
-						// Lock
-							isLocked = true;
-							
-						// Change nav link (if it exists)
-							_nav_links.removeClass('active');
-							_nav_links.filter('[href="#' + id + '"]').addClass('active');
-							
-						// Change hash
-							if (i == 0)
-								window.location.hash = '#';
-							else
-								window.location.hash = '#' + id;
-
-						// Add bottom padding
-							var x = parseInt(_wrapper.css('padding-top')) +
-									panels[id].outerHeight() +
-									_nav.outerHeight() +
-									_footer.outerHeight();
-						
-							if (x > _window.height())
-								_wrapper.addClass('tall');
-							else
-								_wrapper.removeClass('tall');
-									
-						// Fade out active panel
-							_footer.fadeTo(settings.fadeSpeed, 0.0001);
-							panels[activePanelId].fadeOut(instant ? 0 : settings.fadeSpeed, function() {
-			
-								// Set new active
-									activePanelId = id;
-
-									// Force scroll to top
-										_hbw.animate({
-											scrollTop: 0
-										}, settings.resizeSpeed, 'swing');
-
-									// Reposition
-										_body.h5u_reposition();
-										
-									// Resize main to height of new panel
-										_main.animate({
-											height: panels[activePanelId].outerHeight()
-										}, instant ? 0 : settings.resizeSpeed, 'swing', function() {
-										
-											// Fade in new active panel
-												_footer.fadeTo(instant ? 0 : settings.fadeSpeed, 1.0);
-												panels[activePanelId].fadeIn(instant ? 0 : settings.fadeSpeed, function() {
-													
-													// Unlock
-														isLocked = false;
-
-												});
-										});
-									
-							});
-					
-					};
+			// Scrolly links
+				$('.scrolly').n33_scrolly(function() {
+					return (skel.isActive('mobile') ? 70 : 190);
 				});
 
-			// Nav + Jumplinks
-				_nav_links.add(_jumplinks).click(function(e) {
-					var t = jQuery(this), href = t.attr('href'), id;
-				
-					if (href.substring(0,1) == '#')
+			// Forms
+				if (skel.vars.IEVersion < 10)
+					$('form').n33_formerize();
+
+			// Full Screen Header
+				if (_settings.useFullScreenHeader)
+				{
+					var $header = $('#header');
+					
+					if ($header.length > 0)
 					{
-						e.preventDefault();
-						e.stopPropagation();
-
-						id = href.substring(1);
+						var $header_header = $header.find('header');
 						
-						if (id in panels)
-							panels[id].h5u_activate();
+						$window
+							.on('resize.overflow_fsh', function() {
+								if (skel.isActive('mobile'))
+									$header.css('padding', '');
+								else
+								{
+									var p = Math.max(192, ($window.height() - $header_header.outerHeight()) / 2);
+									$header.css('padding', p + 'px 0 ' + p + 'px 0');
+								}
+							})
+							.trigger('resize.overflow_fsh');
+							
+						$window.load(function() {
+							$window.trigger('resize.overflow_fsh');
+						});
 					}
-				});
-			
-			// Window
-				_window
-					.resize(function() {
-						if (!isLocked)
-							_body.h5u_resize();
-					});
-
-			// Forms (IE <= 9 only)
-				if (isLegacyIE)
-					jQuery('form').n33_formerize();
-
-			// Init
-				_window
-					.trigger('resize');
-
-				if (hash && hash in panels)
-					panels[hash].h5u_activate(true);
-
-				_wrapper.fadeTo(400, 1.0);
+				}
 				
-		}
-	
-});
+			// Parallax Background
+				if (_settings.useParallax)
+				{
+					var $dummy = $(), $bg;
+				
+					$window
+						.on('scroll.overflow_parallax', function() {
+							$bg.css('background-position', 'center ' + (-1 * (parseInt($window.scrollTop()) / _settings.parallaxFactor)) + 'px');
+						})
+						.on('resize.overflow_parallax', function() {
+							if ($window.width() > _settings.parallaxLimit
+							||	skel.isActive('narrow'))
+							{
+								$body.css('background-position', '');
+								$bg = $dummy;
+							}
+							else
+								$bg = $body;
+						})
+						.trigger('resize.overflow_parallax');
+
+					// IE's smooth scroll kind of screws this up, so we have to turn it off.
+						if (skel.vars.IEVersion < 11)
+							$window.unbind('scroll.overflow_parallax');
+				}
+				
+			// Poptrox
+			
+				if (skel.vars.IEVersion < 9)
+					_settings.poptrox.overlayOpacity = 0;
+			
+				$('.gallery').poptrox(_settings.poptrox);
+
+		});

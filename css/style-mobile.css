@@ -1,5 +1,5 @@
 /*
-	Astral 2.5 by HTML5 UP
+	Overflow 1.1 by HTML5 UP
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
@@ -8,177 +8,289 @@
 /* Basic                                                                         */
 /*********************************************************************************/
 
-	body, input, textarea
+	*
 	{
-		font-size: 11pt;
-		line-height: 1.75em;
-	}
-	
-	h1, h2
-	{
-		font-size: 1.75em;
-		letter-spacing: -0.025em;
+		text-shadow: none !important;
 	}
 
-	h3, h4, h5, h6
+	body,input,textarea,select
+	{
+		line-height: 1.5em;
+		font-size: 12pt;
+		letter-spacing: 0;
+	}
+
+	h2, h3, h4, h5, h6
+	{
+		font-size: 1em;
+	}
+	
+	h2
 	{
 		font-size: 1.25em;
-		letter-spacing: -0.025em;
+		letter-spacing: 4px;
 	}
 
-	header
-	{
-		margin: 0 0 1.5em 0;
-	}
+	/* Lists */
 
-	table.style1
-	{
-		overflow-x: scroll;
-	}
-
-	ul.links
-	{
-	}
-	
-		ul.links li
-		{
-		}
-
-			ul.links li:before
-			{
-				padding: 0 0.25em 0 0.25em;
-			}
-	
-	.button
-	{
-		display: block;
-		width: 100%;
-		padding: 0.75em 0 0.75em 0;
-		text-align: center;
-		margin: 1em 0 0 0;
-	}
-	
-	.byline
-	{
-		margin: 0.5em 0 0 0;
-	}
-
-	.is-gallery
-	{
-	}
-	
-		.is-gallery .image
-		{
-			margin: 5px 0 0 0;
-		}
-
-/*********************************************************************************/
-/* Wrapper                                                                       */
-/*********************************************************************************/
-			
-	#wrapper
-	{
-		padding: 7px;
-	}
-
-/*********************************************************************************/
-/* Nav                                                                           */
-/*********************************************************************************/
-	
-	#nav
-	{
-		text-align: center;
-		margin: 6px 0 8px 0;
-	}
-	
-		#nav a
-		{
-			font-size: 2em;
-			opacity: 0.5;
-			outline: 0;
-			width: 1.5em;
-			height: 1.5em;
-			line-height: 1.35em;
-			margin: 0 0.25em 0 0.25em;
-		}
-		
-			#nav a:active
-			{
-				opacity: 1.0;
-			}
-
-			#nav a span
-			{
-				display: none;
-			}
-	
-/*********************************************************************************/
-/* Panels                                                                        */
-/*********************************************************************************/
-
-	#main
-	{
-		background: none;
-	}
-
-	.panel
-	{
-		padding: 15px 15px 15px 15px;
-		margin: 0 0 7px 0;
-		background: #fff;
-		box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.25);
-	}
-
-		.panel header
-		{
-			padding-top: 1em;
-		}
-	
-	/* Me */
-	
-		#me
+		ul.default
 		{
 		}
 		
-			#me .pic
+			ul.default li
 			{
-				width: 100%;
+				padding-left: 0.5em;
+			}		
+
+		ul.icons
+		{
+		}	
+		
+			ul.icons li
+			{
 			}
 			
-				#me .pic img
+				ul.icons a
 				{
-					display: block;
-					width: 100%;
+					width: 2em;
+					height: 2em;
+					line-height: 2em;
 				}
-			
-				#me .pic .arrow
-				{
-					display: none;
-				}
-			
-			#me header
+
+		ul.menu
+		{
+		}
+		
+			ul.menu li
 			{
+				display: block;
+				padding: 0;
+				border: 0;
+				margin: 1em 0 0 0;
+			}
+			
+			ul.menu li:first-child
+			{
+				margin-top: 0;
+			}
+
+		ul.actions
+		{
+		}
+		
+			ul.actions li
+			{
+				display: block;
+				margin: 1em 0 0 0;
+			}
+			
+			ul.actions li:first-child
+			{
+				margin-top: 0;
+			}
+
+		ol.default
+		{
+		}
+
+			ol.default li
+			{
+				padding-left: 0.25em;
+			}
+
+	/* Buttons */
+		
+		.button
+		{
+			padding: 0.75em 0 0.75em 0;
+			width: 100%;
+			max-width: 320px;
+		}
+
+	/* Box */
+
+		.box
+		{
+			margin-top: 4.5em;
+		}
+
+			.box:after
+			{
+				top: -4.5em;
+				height: 4.5em;
+			}
+		
+			.box:before
+			{
+				width: 45px;
+				height: 33px;
+				top: -2.25em;
+				margin-left: -22.5px;
+				margin-top: -16.5px;
+				background-size: 45px 33px;
+			}
+
+			.box.style1
+			{
+				padding: 0;
 				text-align: center;
 			}
 			
-			#me h1
+				.box.style1 .image
+				{
+					position: relative !important;
+					left: 0 !important;
+					width: 100% !important;
+					height: auto !important;
+				}
+
+					.box.style1 .image img
+					{
+						position: relative;
+						height: auto;
+						width: 100%;
+					}
+
+				.box.style1 .inner
+				{
+					margin: 0 !important;
+					padding: 2em 1.25em 2em 1.25em !important;
+				}
+
+			.box.style2
 			{
-				font-size: 2.15em;
-				letter-spacing: -0.025em;
 			}
 			
-			#me .byline
+				.box.style2 .inner
+				{
+				}
+
+					.box.style2 .inner .row
+					{
+					}
+					
+						.box.style2 .inner .row:before
+						{
+							display: none;
+						}
+
+					.box.style2 .inner .image
+					{
+						padding: 0;
+						max-width: 250px;
+						margin: 0 auto 20px auto;
+					}
+
+			.box.style3
 			{
-				font-size: 1.25em;
+				padding: 2em 1.25em 2em 1.25em;
+			}
+
+/*********************************************************************************/
+/* Header                                                                        */
+/*********************************************************************************/
+
+	#header
+	{
+		padding: 6em 0 6em 0;
+	}
+
+		#header header
+		{
+			padding-left: 2em;
+			padding-right: 2em;
+		}
+		
+			#header header h1
+			{
+				font-size: 1.75em;
+				letter-spacing: 6px;
+			}
+
+		#header footer
+		{
+			bottom: 4.5em;
+			padding: 0 2em 0 2em;
+		}
+
+			#header footer:after
+			{
+				bottom: -4.5em;
+				left: 50%;
+				height: 4.5em;
+			}
+		
+			#header footer:before
+			{
+				width: 45px;
+				height: 33px;
+				bottom: -2.25em;
+				margin-left: -22.5px;
+				margin-bottom: -16.5px;
+				background-size: 45px 33px;
+			}
+
+/*********************************************************************************/
+/* Banner                                                                        */
+/*********************************************************************************/
+
+	#banner
+	{
+		padding: 3em 2em 3em 2em;
+		background-size: auto 150%;
+	}
+
+		#banner header
+		{
+			margin: 0 0 1em 0;
+		}
+		
+			#banner header h2
+			{
+				font-size: 1.5em;
+				letter-spacing: 6px;
 			}
 
 /*********************************************************************************/
 /* Footer                                                                        */
 /*********************************************************************************/
-
+	
 	#footer
 	{
-		text-align: center;
-		padding: 2em 0 0 0;
-		font-size: 0.85em;
 	}
+
+		#footer .icons
+		{
+			padding: 0.5em 1.25em 0.5em 1.25em;
+		}
+		
+		#footer .copyright
+		{
+			font-size: 1em;
+			margin: 0 0 4em 0;
+		}
+
+/*********************************************************************************/
+/* Poptrox                                                                       */
+/*********************************************************************************/
+
+	.poptrox-popup
+	{
+	}
+	
+		.poptrox-popup .nav-next,
+		.poptrox-popup .nav-previous
+		{
+			opacity: 1.0;
+		}
+
+			.poptrox-popup .nav-next:before,
+			.poptrox-popup .nav-previous:before
+			{
+				display: none;
+			}
+		
+		.poptrox-popup .closer
+		{
+			opacity: 0.5;
+		}
